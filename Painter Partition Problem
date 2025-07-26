@@ -1,0 +1,45 @@
+// User function template for C++
+
+class Solution {
+  public:
+    int cal(vector<int> &v, int mid)
+    {
+        int painter(1);
+        int length(0);
+
+        for (int i(0); i < v.size(); i++)
+        {
+            if (v[i] + length > mid)
+            {
+                painter++;
+                length = v[i];
+            }
+            else
+                length += v[i];
+        }
+
+        return painter;
+    }
+    int minTime(vector<int>& arr, int k) {
+        // code here
+        int left(*max_element(arr.begin(), arr.end()));
+        int right(accumulate(arr.begin(), arr.end(), 0));
+
+        while (left <= right)
+        {
+            int mid = left + (right - left + 1) / 2;
+
+            if (cal(arr, mid) > k)
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                right = mid - 1;
+            }
+        }
+
+        return left;
+        // return minimum time
+    }
+};
