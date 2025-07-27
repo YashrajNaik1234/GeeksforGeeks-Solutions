@@ -1,0 +1,30 @@
+class Solution {
+  public:
+    int cal(vector<int> &v, double mid) {
+        int cnt(0);
+
+        for (int i(0); i < v.size() - 1; i++) {
+            double gap = v[i + 1] - v[i]; cnt += (int)gap / mid;
+        }
+
+        return cnt;
+    }
+    double findSmallestMaxDist(vector<int> &arr, int k) {
+        // Code here
+        double left(0), right(0);
+
+        for(int i(0);i < arr.size() - 1;i++){
+            right = max(right ,(double)(arr[i + 1] - arr[i]));
+        }
+        
+        double diff = 1e-6;
+        while (right - left > diff) {
+            double mid = (right + left) / 2.0;
+
+            if (cal(arr, mid) <= k)  right = mid;
+            else left = mid;
+        }
+ 
+        return right;
+    }
+};
