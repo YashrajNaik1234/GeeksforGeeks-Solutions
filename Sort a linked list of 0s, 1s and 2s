@@ -1,0 +1,38 @@
+class Solution {
+  public:
+    Node* segregate(Node* head) {
+        Node* zeroH = new Node(0);
+        Node* zero = zeroH;
+        Node* oneH = new Node(0);
+        Node* one = oneH;
+        Node* twoH = new Node(0);
+        Node* two = twoH;
+
+        while(head != nullptr){
+            if(head -> data == 0){
+                Node* zeroval = new Node(head -> data);
+                zero -> next = zeroval;
+                zero = zero -> next;
+            }
+            if(head -> data == 1){
+                Node* oneval = new Node(head -> data);
+                one -> next = oneval;
+                one = one -> next;
+            }
+            else if(head -> data == 2){
+                Node* twoval = new Node(head -> data);
+                two -> next = twoval;
+                two = two -> next;
+            }
+            
+            head = head -> next;
+        }
+        
+        if(oneH -> next != nullptr) zero -> next = oneH -> next;
+        else zero -> next = twoH -> next;
+        one -> next = twoH -> next;
+        two -> next = nullptr;
+        
+        return zeroH -> next;
+    }
+};
