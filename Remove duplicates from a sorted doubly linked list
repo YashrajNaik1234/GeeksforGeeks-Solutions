@@ -1,0 +1,22 @@
+class Solution {
+  public:
+
+    Node *removeDuplicates(struct Node *head) {
+        // Your code here
+        Node* temp = head;
+        while(temp and temp -> next){
+            Node* nextNode = temp -> next;
+            while(nextNode and nextNode -> data == temp -> data){
+                Node* dupli = nextNode;
+                nextNode = nextNode -> next; free(dupli);
+            }
+            
+            temp -> next = nextNode;
+            if(nextNode) nextNode -> prev = temp;
+            
+            temp = temp -> next;
+        }
+        
+        return head;
+    }
+};
