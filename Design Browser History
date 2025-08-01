@@ -1,0 +1,68 @@
+// User function Template for C++
+class Node{
+  public:
+    string data;
+    Node* next;
+    Node* back;
+    
+    Node(){
+        data = "";
+        next = NULL;
+        back = NULL;
+    }
+
+    Node(string value)
+    {
+        data = value;
+        next = NULL;
+        back = NULL;
+    }
+    
+    Node(string value, Node* next, Node* back)
+    {
+        data = value;
+        this -> next = next;
+        this -> back = back;
+    }
+};
+
+class BrowserHistory {
+  public:
+    Node* cur;
+    // constructor to initialize object with homepage
+    BrowserHistory(string homepage) {
+        cur = new Node(homepage);
+    }
+
+    // visit current url
+    void visit(string url) {
+        Node* newNode = new Node(url);
+        cur -> next = newNode;
+        newNode -> back = cur;
+        cur = newNode;
+    }
+
+    // 'steps' move backward in history and return current page
+    string back(int steps) {
+        while(steps){
+            if(cur -> back) cur = cur -> back;
+            else break;
+            
+            steps--;
+        }
+        
+        return cur -> data;
+    }
+
+    // 'steps' move forward and return current page
+    string forward(int steps) {
+        while(steps){
+            if(cur -> next) cur = cur -> next;
+            else break;
+            
+            steps--;
+        }
+        
+        return cur -> data;
+    }
+};
