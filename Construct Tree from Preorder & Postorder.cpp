@@ -13,7 +13,7 @@ class Solution {
 
         if (pos <= end) {
             root -> left = build(pre, post, preIndex, start, pos, n);
-            root -> right = build(pre, post, preIndex, pos + 1, end - 1, n);
+            root -> right = build(pre, post, preIndex, pos + 1, end, n);
         }
 
         return root;
