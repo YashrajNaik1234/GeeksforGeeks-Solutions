@@ -21,6 +21,6 @@ class Solution {
     Node *constructTree(vector<int> &pre, vector<int> &post) {
         // code here
         int n = pre.size(), preIndex = 0;
-        return build(pre, post, preIndex, 0, n - 1, n);
+        return build(pre, post, preIndex, 0, n, n);
     }
 };
